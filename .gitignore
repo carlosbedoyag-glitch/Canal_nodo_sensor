@@ -1,0 +1,19 @@
+# Ignore build outputs
+.pio
+.vscode
+*.code-workspace
+
+# C/C++ object files
+*.o
+*.a
+*.so
+*.dylib
+*.bin
+*.elf
+*.hex
+*.map
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
