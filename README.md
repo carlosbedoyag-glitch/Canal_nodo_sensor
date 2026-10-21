@@ -4,7 +4,7 @@ Proyecto de simulación de un nodo sensor basado en ESP32 para medir temperatura
 
 Este proyecto fue desarrollado y validado en una simulación realizada en Wokwi. No se realizó una implementación física ni un despliegue real en hardware durante esta etapa.
 
-E codigop se encuentra en el archivo SRC
+EL codigo se encuentra en el archivo SRC
 
 ## Descripción del proyecto
 
