@@ -1,34 +1,34 @@
 # Canal nodo sensor
 
-Proyecto de simulación de un nodo sensor basado en ESP32 para capturar temperatura, humedad y un valor analógico de un potenciómetro, y enviar esos datos a ThingSpeak mediante MQTT.
+Proyecto de simulación de un nodo sensor basado en ESP32 para medir temperatura, humedad y un valor analógico desde un potenciómetro, y enviar la información a ThingSpeak mediante MQTT.
 
-Este proyecto se desarrolló exclusivamente como simulación en Wokwi. No se realizó un despliegue físico real con PlatformIO ni una programación en hardware real durante esta etapa.
+Este proyecto fue desarrollado y validado en una simulación realizada en Wokwi. No se realizó una implementación física ni un despliegue real en hardware durante esta etapa.
 
 ## Descripción del proyecto
 
 El sistema simulado utiliza:
 
 - ESP32 virtual en Wokwi
-- Sensor DHT22 para temperatura y humedad
+- Sensor DHT22 para medir temperatura y humedad
 - Potenciómetro conectado al GPIO34
-- LED indicador para mostrar el estado de la conexión
-- MQTT para publicar datos a ThingSpeak
+- LED indicador para mostrar el estado de conexión
+- Protocolo MQTT para publicar los datos en ThingSpeak
 
 ## Simulación realizada
 
-La lógica del sistema se probó en Wokwi, una plataforma de simulación para microcontroladores. Esto permitió validar el comportamiento de:
+La lógica del proyecto fue probada en Wokwi, una plataforma de simulación para microcontroladores, con el objetivo de verificar:
 
 - lectura del sensor DHT22
-- lectura del potenciómetro
+- lectura del valor analógico del potenciómetro
 - conexión Wi‑Fi
 - conexión MQTT
-- publicación de datos en ThingSpeak
+- publicación de datos hacia ThingSpeak
 
-## Uso de ThingSpeak
+## Adquisición de datos con ThingSpeak
 
-La adquisición de datos se realizó usando ThingSpeak como plataforma IoT para recibir y registrar la telemetría enviada por el nodo simulado.
+La adquisición de datos se realizó mediante ThingSpeak, que actuó como plataforma IoT para recibir y registrar la telemetría enviada por el nodo simulado.
 
-El dispositivo publica en el tópico:
+El dispositivo publica datos en el topic:
 
 `channels/<CHANNEL_ID>/publish`
 
@@ -61,13 +61,13 @@ Contiene la lógica principal del nodo sensor:
 
 - configuración de Wi‑Fi y MQTT
 - conexión al broker de ThingSpeak
-- lectura del sensor DHT22
+- lectura del DHT22
 - lectura del potenciómetro
 - publicación periódica de datos
 
 ### `platformio.ini`
 
-Este archivo existe como referencia de configuración para un entorno ESP32 con PlatformIO, pero en este caso la validación principal se realizó en Wokwi.
+Archivo de configuración para un entorno ESP32 con PlatformIO, aunque la validación principal se realizó en Wokwi.
 
 ## Requisitos para la simulación
 
@@ -90,21 +90,21 @@ En `src/main.cpp` se deben configurar:
 
 ## Funcionamiento del firmware
 
-El código ejecuta estas tareas:
+El código realiza las siguientes tareas:
 
 1. Conecta el ESP32 a la red Wi‑Fi.
 2. Verifica la conexión con el broker MQTT.
 3. Lee la temperatura y humedad del DHT22.
 4. Lee el valor analógico del potenciómetro.
 5. Publica los datos en ThingSpeak.
-6. Reintenta la conexión si ocurre algún fallo.
+6. Reintenta la conexión si ocurre un error.
 
 ## Consideraciones
 
-- La publicación en ThingSpeak está limitada por la frecuencia permitida por la plataforma.
+- La publicación de datos está limitada por la frecuencia permitida por ThingSpeak.
 - El intervalo de envío se controla con `INTERVALO_PUBLICACION`.
-- La simulación en Wokwi permite probar la lógica del proyecto antes de una implementación real en hardware.
-- La configuración actual del repositorio está orientada a un entorno una vez se quiera llevar a un ESP32 real, pero la verificación efectiva fue en Wokwi.
+- La simulación en Wokwi permite validar la lógica del proyecto antes de una implementación real.
+- La configuración actual del repositorio está orientada a un entorno ESP32 real, pero la verificación efectuada fue en simulación.
 
 ## Objetivo
 
@@ -112,4 +112,4 @@ Demostrar la adquisición y envío de datos ambientales y analógicos desde un n
 
 ## Nota importante
 
-La versión actual del proyecto corresponde a una simulación funcional en Wokwi, no a un despliegue físico realizado con PlatformIO.
+Este proyecto corresponde a una simulación funcional en Wokwi y no a un montaje físico real en hardware.
